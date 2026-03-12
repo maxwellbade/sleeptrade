@@ -2,7 +2,7 @@
 // Update AMAZON_TAG with your Associates tracking ID (e.g. "sleeptrade-20")
 // All links auto-inject the tag via buildAmazonUrl()
 
-export const AMAZON_TAG = "sleeptrade-20"; // ← UPDATE with your real tag
+export const AMAZON_TAG = "sleeptradewin-20";
 
 export function buildAmazonUrl(asin: string): string {
   return `https://www.amazon.com/dp/${asin}?tag=${AMAZON_TAG}&linkCode=ogi&th=1&psc=1`;

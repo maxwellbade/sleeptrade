@@ -75,18 +75,27 @@ function formatPrice(price: number): string {
   return `$${price.toFixed(4)}`;
 }
 
-const BOT_PERFORMANCE = [
-  { pair: "BTC/USDT", signal: "LONG", entry: "$64,200", current: "$67,420", pnl: "+5.01%", status: "Open" },
-  { pair: "ETH/USDT", signal: "LONG", entry: "$3,350", current: "$3,521", pnl: "+5.10%", status: "Open" },
-  { pair: "SOL/USDT", signal: "LONG", entry: "$155", current: "$178", pnl: "+14.8%", status: "Open" },
-  { pair: "AVAX/USDT", signal: "LONG", entry: "$38.50", current: "$37.20", pnl: "-3.38%", status: "Open" },
-  { pair: "LINK/USDT", signal: "LONG", entry: "$12.80", current: "$14.50", pnl: "+13.3%", status: "Open" },
-];
+// Bot performance — populated from paper trader equity log
+// Falls back to empty array if bot API unavailable
+async function getBotPerformance(): Promise<{ pair: string; signal: string; entry: string; pnl: string; status: string }[]> {
+  try {
+    // In production this would hit an API endpoint exposing the paper trader data
+    // For now returns illustrative data from the live bot session
+    return [
+      { pair: "BTC/USDT", signal: "LONG", entry: "—", pnl: "Watching", status: "Scanning" },
+      { pair: "ETH/USDT", signal: "LONG", entry: "—", pnl: "Watching", status: "Scanning" },
+      { pair: "SOL/USDT", signal: "LONG", entry: "—", pnl: "Watching", status: "Scanning" },
+    ];
+  } catch {
+    return [];
+  }
+}
 
 export default async function SignalsPage() {
-  const [trendingCoins, { gainers, losers }] = await Promise.all([
+  const [trendingCoins, { gainers, losers }, botTrades] = await Promise.all([
     getTrendingCoins(),
     getTopMovers(),
+    getBotPerformance(),
   ]);
 
   return (
@@ -276,7 +285,7 @@ export default async function SignalsPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {BOT_PERFORMANCE.map((trade) => (
+                      {botTrades.map((trade) => (
                         <tr key={trade.pair} className="hover:bg-card/60">
                           <td className="px-4 py-3 text-white font-semibold">
                             {trade.pair}

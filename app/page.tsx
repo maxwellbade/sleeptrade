@@ -58,13 +58,13 @@ const FEATURED_BROKERS = [
     highlight: "Lowest crypto exchange fees",
   },
   {
-    name: "moomoo",
-    type: "Stocks",
-    rating: 4.5,
+    name: "Robinhood",
+    type: "Stocks & Crypto",
+    rating: 4.4,
     fee: "$0",
     minDeposit: "$0",
-    affiliateKey: "moomoo" as const,
-    highlight: "Free Level 2 market data",
+    affiliateKey: "robinhood" as const,
+    highlight: "Best for beginners — $0 commissions",
   },
 ];
 

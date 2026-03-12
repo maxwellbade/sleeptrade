@@ -16,6 +16,7 @@ const variantClasses = {
 const defaultLabels: Record<AffiliateKey, string> = {
   coinbase: "Open Coinbase Account →",
   webull: "Open Webull Account →",
+  robinhood: "Open Robinhood Account →",
   kraken: "Open Kraken Account →",
   moomoo: "Open moomoo Account →",
   interactiveBrokers: "Open IBKR Account →",

@@ -1,0 +1,90 @@
+export const SUPPORTED_COINS = [
+  "bitcoin",
+  "ethereum",
+  "solana",
+  "xrp",
+  "dogecoin",
+  "cardano",
+  "avalanche",
+  "chainlink",
+  "polkadot",
+  "near",
+] as const;
+
+export type CoinSlug = typeof SUPPORTED_COINS[number];
+
+export const COIN_METADATA: Record<CoinSlug, { name: string; symbol: string; cgId: string }> = {
+  bitcoin: { name: "Bitcoin", symbol: "BTC", cgId: "bitcoin" },
+  ethereum: { name: "Ethereum", symbol: "ETH", cgId: "ethereum" },
+  solana: { name: "Solana", symbol: "SOL", cgId: "solana" },
+  xrp: { name: "XRP", symbol: "XRP", cgId: "ripple" },
+  dogecoin: { name: "Dogecoin", symbol: "DOGE", cgId: "dogecoin" },
+  cardano: { name: "Cardano", symbol: "ADA", cgId: "cardano" },
+  avalanche: { name: "Avalanche", symbol: "AVAX", cgId: "avalanche-2" },
+  chainlink: { name: "Chainlink", symbol: "LINK", cgId: "chainlink" },
+  polkadot: { name: "Polkadot", symbol: "DOT", cgId: "polkadot" },
+  near: { name: "NEAR Protocol", symbol: "NEAR", cgId: "near" },
+};
+
+export const COIN_ANALYSIS: Record<CoinSlug, { tagline: string; pros: string[]; cons: string[]; analysis: string }> = {
+  bitcoin: {
+    tagline: "The original cryptocurrency and digital gold.",
+    pros: ["Most liquid crypto asset", "Widely accepted globally", "Store of value narrative", "Institutional adoption growing"],
+    cons: ["High price per coin (though fractional OK)", "Slower transaction speeds", "Energy intensive"],
+    analysis: `Bitcoin (BTC) remains the gold standard of cryptocurrency. Created in 2009 by the pseudonymous Satoshi Nakamoto, Bitcoin pioneered decentralized digital currency and continues to dominate the market with the largest market cap of any cryptocurrency.\n\nAs a long-term investment, Bitcoin has historically outperformed most traditional assets, despite significant volatility. Institutional adoption from companies like MicroStrategy, Tesla, and major ETF issuers has legitimized BTC as a portfolio diversifier.\n\nFor retail investors, Bitcoin's "digital gold" narrative makes it a relatively straightforward long-term hold — particularly in times of inflation or currency debasement. Dollar-cost averaging (DCA) remains the most recommended strategy for new investors.\n\nBitcoin's fixed supply of 21 million coins, combined with halving events every ~4 years, creates a deflationary pressure that many analysts believe will drive long-term price appreciation. The approval of spot Bitcoin ETFs in 2024 opened the door for massive institutional inflows.`,
+  },
+  ethereum: {
+    tagline: "The world's programmable blockchain.",
+    pros: ["Largest DeFi and smart contract ecosystem", "Proof-of-Stake (energy efficient)", "ETH ETFs approved", "Active developer community"],
+    cons: ["Gas fees can be high during congestion", "Competition from faster L1s", "Complex technical upgrades"],
+    analysis: `Ethereum (ETH) is far more than just a currency — it's the backbone of decentralized finance, NFTs, and the broader Web3 ecosystem. As the second-largest cryptocurrency by market cap, Ethereum powers thousands of decentralized applications (dApps) and smart contracts.\n\nThe transition to Proof-of-Stake via "The Merge" in 2022 dramatically reduced Ethereum's energy consumption and introduced staking rewards, giving ETH holders a yield-bearing option. This makes ETH arguably more attractive as both a speculative asset and a productive one.\n\nFor investors, ETH's value is tied to the usage of its network. As DeFi, NFTs, and Layer 2 solutions continue to grow, demand for ETH increases. Layer 2 networks like Arbitrum and Optimism built on Ethereum further expand its utility without sacrificing security.\n\nThe approval of spot Ethereum ETFs further validates ETH as a mainstream investable asset. Many analysts consider ETH an "ultra-sound money" play given its deflationary tokenomics post-merge.`,
+  },
+  solana: {
+    tagline: "High-performance blockchain built for speed and scale.",
+    pros: ["Ultra-fast transactions (~65,000 TPS)", "Very low fees (<$0.01)", "Thriving NFT and DeFi ecosystem", "Strong developer growth"],
+    cons: ["History of network outages", "More centralized than Bitcoin/Ethereum", "Younger ecosystem"],
+    analysis: `Solana (SOL) has emerged as one of the most compelling alternatives to Ethereum, offering blazing-fast transaction speeds and near-zero fees. Originally launched in 2020, Solana quickly attracted developers building DeFi protocols, NFT marketplaces, and gaming applications.\n\nDespite facing significant challenges — including the FTX collapse which hit Solana hard — the network has demonstrated remarkable resilience. SOL recovered strongly in 2023-2024, driven by renewed developer interest, a booming NFT scene, and the explosive popularity of meme coins on the Solana network.\n\nFor traders, Solana offers a higher-risk, higher-reward profile compared to BTC or ETH. Its performance is closely tied to network adoption and the health of its DeFi ecosystem. Investors bullish on high-throughput blockchains and low-fee applications tend to favor SOL.\n\nSolana's improving infrastructure, reduced downtime, and growing institutional interest make it a serious contender as a top-tier blockchain platform for the next cycle.`,
+  },
+  xrp: {
+    tagline: "Institutional cross-border payments at lightning speed.",
+    pros: ["Extremely fast settlement (3-5 seconds)", "Very low fees", "Ripple's banking partnerships", "Legal clarity improving"],
+    cons: ["Ongoing SEC regulatory history", "Centralization concerns", "Dependent on Ripple's business success"],
+    analysis: `XRP is the native digital asset of the XRP Ledger (XRPL), designed primarily for fast, low-cost international money transfers. Unlike Bitcoin, XRP was created with financial institutions in mind — Ripple Labs has built extensive partnerships with banks and payment providers globally.\n\nThe long-running SEC vs. Ripple lawsuit cast a shadow over XRP for years, but the partial court victory in 2023 (XRP is not a security in programmatic sales) provided significant legal clarity. This triggered a major rally and renewed institutional interest.\n\nXRP processes transactions in 3-5 seconds with fees as low as fractions of a cent, making it one of the most practical cryptocurrencies for real-world payment use cases. Ripple's On-Demand Liquidity (ODL) product uses XRP as a bridge currency for cross-border payments.\n\nFor investors, XRP is a bet on the adoption of blockchain-based cross-border payments and Ripple's ability to onboard more financial institutions. It's a more speculative, narrative-driven investment compared to BTC or ETH.`,
+  },
+  dogecoin: {
+    tagline: "The original meme coin with real-world utility.",
+    pros: ["Large, loyal community", "Elon Musk association", "Low transaction fees", "Widely accepted by merchants"],
+    cons: ["Inflationary supply (no hard cap)", "Primarily sentiment-driven", "Limited technical development"],
+    analysis: `Dogecoin (DOGE) started as a joke in 2013 but has evolved into one of the most recognized cryptocurrency brands in the world. With Elon Musk as its unofficial spokesman and a devoted community nicknamed the "Doge Army," DOGE has proven its staying power through multiple market cycles.\n\nUnlike most cryptocurrencies, Dogecoin has an unlimited supply — 5 billion new DOGE are minted annually. This inflationary model means DOGE is better suited as a spending currency than a store of value, though sentiment-driven rallies can produce massive short-term gains.\n\nDogecoin has genuine utility: it's fast, cheap to transact, and accepted by a growing number of merchants including Tesla merchandise, some Newegg products, and various online services. The potential integration with X (formerly Twitter) for payments has been a recurring catalyst.\n\nFor investors, DOGE is a high-risk, sentiment-driven asset. Position sizing is key — many traders treat DOGE as a small speculative bet within a diversified crypto portfolio rather than a core holding.`,
+  },
+  cardano: {
+    tagline: "The research-driven, peer-reviewed blockchain.",
+    pros: ["Academic/peer-reviewed approach", "Proof-of-Stake from inception", "Growing African market focus", "Hydra scalability layer"],
+    cons: ["Slow development pace historically", "Smaller DeFi ecosystem vs ETH/SOL", "Complex governance"],
+    analysis: `Cardano (ADA) stands apart in the crypto space for its methodical, academic approach to blockchain development. Founded by Ethereum co-founder Charles Hoskinson, Cardano uses peer-reviewed research and formal verification to build a secure, scalable blockchain platform.\n\nCardano's development roadmap is divided into named eras (Byron, Shelley, Goguen, Basho, Voltaire), each adding new capabilities. The introduction of smart contracts via Plutus and the Alonzo hard fork enabled a growing DeFi ecosystem, though it remains smaller than Ethereum's or Solana's.\n\nOne unique aspect of Cardano is its focus on emerging markets — particularly Africa — where Cardano is being used for identity verification, land registry, and education credentialing in partnership with governments.\n\nFor investors, ADA is a long-term thesis play on Cardano's methodical development eventually delivering a highly scalable, formally verified blockchain. It requires patience but appeals to those who believe technical rigor matters in the long run.`,
+  },
+  avalanche: {
+    tagline: "Blazing fast, low-cost, eco-friendly smart contracts.",
+    pros: ["Sub-second finality", "EVM compatible (easy ETH migration)", "Subnet architecture for custom chains", "Strong institutional backing (Ava Labs)"],
+    cons: ["Competition from Ethereum L2s", "Smaller ecosystem than ETH", "AVAX token utility dependent on subnet growth"],
+    analysis: `Avalanche (AVAX) is a smart contract platform that achieves near-instant transaction finality through its innovative consensus mechanism. Unlike traditional blockchains, Avalanche uses a unique three-chain architecture — the X-Chain, C-Chain, and P-Chain — each optimized for different tasks.\n\nAvalanche's killer feature is its Subnet architecture, which allows anyone to create custom blockchain networks that inherit Avalanche's security. This has attracted institutions, gaming companies, and DeFi protocols looking to build their own chains without compromising on speed or security.\n\nAvalanche's C-Chain is fully EVM-compatible, making it easy for Ethereum developers to deploy existing smart contracts with minimal changes. This has enabled rapid ecosystem growth, with major DeFi protocols like Aave, Curve, and Trader Joe operating on the network.\n\nFor investors, AVAX is a bet on enterprise and institutional blockchain adoption via Subnets. Ava Labs has been aggressive in signing partnerships and the upcoming Avalanche9000 upgrade promises to dramatically reduce Subnet deployment costs, which could be a major catalyst.`,
+  },
+  chainlink: {
+    tagline: "The decentralized oracle network powering DeFi.",
+    pros: ["Dominant oracle market share (70%+)", "Critical infrastructure for all of DeFi", "CCIP enabling cross-chain growth", "Staking now live"],
+    cons: ["Oracle services market has competitors", "LINK appreciation tied to network fees", "Less speculative upside than pure smart contract platforms"],
+    analysis: `Chainlink (LINK) occupies a unique and critical position in the blockchain ecosystem — it's the leading decentralized oracle network that connects smart contracts to real-world data. Without oracles like Chainlink, DeFi protocols couldn't access price feeds, sports scores, weather data, or any off-chain information.\n\nWith over 70% market share in the oracle space, Chainlink has established itself as essential infrastructure for DeFi. Its data feeds are used by Aave, Compound, Synthetix, and hundreds of other protocols managing tens of billions in assets. LINK is the token used to pay oracle node operators.\n\nChainlink's Cross-Chain Interoperability Protocol (CCIP) is a newer product that enables secure communication between different blockchains — effectively positioning Chainlink as the "SWIFT" of blockchain interoperability. This significantly expands Chainlink's addressable market.\n\nFor investors, LINK is a "picks and shovels" play on DeFi growth — as the DeFi ecosystem expands, demand for reliable oracles grows with it. Chainlink staking, now live, provides additional utility and deflationary pressure on LINK's circulating supply.`,
+  },
+  polkadot: {
+    tagline: "The blockchain of blockchains — interoperability at scale.",
+    pros: ["Parachain architecture enables specialization", "Shared security model", "Cross-chain communication built in", "Strong developer grants program"],
+    cons: ["Parachain slot auctions complex", "Competition from Cosmos, IBC", "Development pace slower than competitors"],
+    analysis: `Polkadot (DOT) was built to solve one of blockchain's biggest challenges: interoperability. Founded by Ethereum co-founder Gavin Wood, Polkadot enables different blockchains (called parachains) to communicate and share security through its relay chain architecture.\n\nPolkadot's unique parachain model allows specialized blockchains to be built and deployed — each optimized for a specific use case (DeFi, NFTs, privacy, IoT) — while benefiting from Polkadot's shared security. This heterogeneous multi-chain architecture is distinct from both Ethereum and Cosmos.\n\nThe network has seen significant growth in its parachain ecosystem, with notable projects like Acala (DeFi), Moonbeam (EVM compatibility), and Astar (smart contracts) building on Polkadot. The recently launched Polkadot 2.0 aims to simplify the architecture and reduce friction for developers.\n\nFor investors, DOT is a long-term infrastructure bet on the multi-chain future of Web3. The staking yield (historically 10-15% APY) provides income while waiting for broader ecosystem adoption. However, Polkadot's complexity has been a barrier to entry for many retail users.`,
+  },
+  near: {
+    tagline: "Developer-friendly blockchain built for mass adoption.",
+    pros: ["Human-readable account names", "Sharding (Nightshade) for scalability", "Fast and cheap transactions", "Chain abstraction pioneering"],
+    cons: ["Smaller ecosystem vs top competitors", "Less brand recognition", "Still building DeFi depth"],
+    analysis: `NEAR Protocol (NEAR) is a developer-friendly, proof-of-stake blockchain designed with usability and scalability in mind. Founded in 2020, NEAR distinguishes itself through human-readable account names (e.g., "alice.near" instead of a hex address), making it far more approachable for mainstream users.\n\nNEAR's Nightshade sharding technology allows the network to scale horizontally — adding more shards as transaction volume grows — theoretically enabling unlimited throughput. This technical foundation makes NEAR well-positioned for mass-market applications.\n\nOne of NEAR's most exciting developments is chain abstraction — the concept of allowing users to interact with any blockchain from a NEAR account, without needing to manage multiple wallets or bridges. This could be transformative for mainstream crypto adoption.\n\nFor investors, NEAR is a higher-risk, higher-reward bet on a newer blockchain ecosystem that has strong technical fundamentals but hasn't yet achieved the network effects of ETH or SOL. The team's focus on chain abstraction and developer experience could drive significant growth as Web3 matures.`,
+  },
+};

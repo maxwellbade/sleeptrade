@@ -5,6 +5,7 @@ export const AFFILIATES = {
   kraken: "https://www.kraken.com/sign-up?referral=affiliate", // ← Max: update with Impact link when approved
   moomoo: "https://j.moomoo.com/00f6bZ",
   interactiveBrokers: "https://www.interactivebrokers.com/referral",
+  shopify: "https://shopify.pxf.io/WOqBLO",
 } as const;
 
 export type AffiliateKey = keyof typeof AFFILIATES;
@@ -16,6 +17,7 @@ export const AFFILIATE_LABELS: Record<AffiliateKey, string> = {
   kraken: "Open Kraken Account →",
   moomoo: "Open moomoo Account →",
   interactiveBrokers: "Open IBKR Account →",
+  shopify: "Start Free Trial →",
 };
 
 // Commission reference (for internal tracking)

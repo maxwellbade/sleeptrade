@@ -11,37 +11,7 @@ export const SUPPORTED_COINS = [
   "near",
 ] as const;
 
-export type CoinSlug = typeof SUPPORTED_COINS[number  {
-    id: "litecoin",
-    name: "Litecoin",
-    symbol: "LTC",
-    description: "Litecoin is a peer-to-peer cryptocurrency created by Charlie Lee. It was created based on the Bitcoin protocol but differs in terms of the hashing alg",
-  },
-  {
-    id: "stellar",
-    name: "Stellar",
-    symbol: "XLM",
-    description: "The Stellar network is an open source, distributed, and community owned network used to facilitate cross-asset transfers of value. Stellar aims to hel",
-  },
-  {
-    id: "uniswap",
-    name: "Uniswap",
-    symbol: "UNI",
-    description: "UNI is the governance token for Uniswap, an Automated Market Marker DEX on the Ethereum blockchain. The UNI token allows token holders to participate ",
-  },
-  {
-    id: "aave",
-    name: "Aave",
-    symbol: "AAVE",
-    description: "Aave is a decentralized money market protocol where users can lend and borrow cryptocurrency across 20 different assets as collateral. The protocol ha",
-  },
-  {
-    id: "cosmos",
-    name: "Cosmos Hub",
-    symbol: "ATOM",
-    description: "The Cosmos network consists of many independent, parallel blockchains, called zones, each powered by classical Byzantine fault-tolerant (BFT) consensu",
-  },
-];
+export type CoinSlug = typeof SUPPORTED_COINS[number];
 
 export const COIN_METADATA: Record<CoinSlug, { name: string; symbol: string; cgId: string }> = {
   bitcoin: { name: "Bitcoin", symbol: "BTC", cgId: "bitcoin" },

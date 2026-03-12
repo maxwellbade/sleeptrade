@@ -6,104 +6,14 @@ export const STOCK_TOPICS = [
   "options-trading-basics",
 ] as const;
 
-export type StockTopic = typeof STOCK_TOPICS[number  {
-    slug: "best-dividend-stocks",
-    title: "Best Dividend Stocks",
-    description: "Complete guide to best dividend stocks for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "how-to-invest-1000-dollars",
-    title: "How To Invest 1000 Dollars",
-    description: "Complete guide to how to invest 1000 dollars for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "index-fund-investing",
-    title: "Index Fund Investing",
-    description: "Complete guide to index fund investing for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "etf-guide-beginners",
-    title: "Etf Guide Beginners",
-    description: "Complete guide to etf guide beginners for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "dollar-cost-averaging",
-    title: "Dollar Cost Averaging",
-    description: "Complete guide to dollar cost averaging for US investors in 2026.",
-    category: "guide",
-  },
-];
+export type StockTopic = typeof STOCK_TOPICS[number];
 
 export interface StockArticle {
   slug: StockTopic;
   title: string;
   description: string;
-  keywords: string[  {
-    slug: "best-dividend-stocks",
-    title: "Best Dividend Stocks",
-    description: "Complete guide to best dividend stocks for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "how-to-invest-1000-dollars",
-    title: "How To Invest 1000 Dollars",
-    description: "Complete guide to how to invest 1000 dollars for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "index-fund-investing",
-    title: "Index Fund Investing",
-    description: "Complete guide to index fund investing for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "etf-guide-beginners",
-    title: "Etf Guide Beginners",
-    description: "Complete guide to etf guide beginners for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "dollar-cost-averaging",
-    title: "Dollar Cost Averaging",
-    description: "Complete guide to dollar cost averaging for US investors in 2026.",
-    category: "guide",
-  },
-];
-  content: string[  {
-    slug: "best-dividend-stocks",
-    title: "Best Dividend Stocks",
-    description: "Complete guide to best dividend stocks for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "how-to-invest-1000-dollars",
-    title: "How To Invest 1000 Dollars",
-    description: "Complete guide to how to invest 1000 dollars for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "index-fund-investing",
-    title: "Index Fund Investing",
-    description: "Complete guide to index fund investing for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "etf-guide-beginners",
-    title: "Etf Guide Beginners",
-    description: "Complete guide to etf guide beginners for US investors in 2026.",
-    category: "guide",
-  },
-  {
-    slug: "dollar-cost-averaging",
-    title: "Dollar Cost Averaging",
-    description: "Complete guide to dollar cost averaging for US investors in 2026.",
-    category: "guide",
-  },
-];
+  keywords: string[];
+  content: string[];
 }
 
 export const STOCK_ARTICLES: Record<StockTopic, StockArticle> = {

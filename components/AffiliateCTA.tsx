@@ -20,6 +20,7 @@ const defaultLabels: Record<AffiliateKey, string> = {
   kraken: "Open Kraken Account →",
   moomoo: "Open moomoo Account →",
   interactiveBrokers: "Open IBKR Account →",
+  shopify: "Start Free Trial →",
 };
 
 export default function AffiliateCTA({

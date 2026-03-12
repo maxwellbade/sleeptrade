@@ -306,6 +306,32 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Shopify Banner */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="bg-gradient-to-r from-[#96bf48]/10 to-[#5a8a00]/10 border border-[#96bf48]/20 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <div className="text-xs font-semibold text-[#96bf48] uppercase tracking-wider mb-2">💼 Build Your Side Hustle</div>
+              <h2 className="text-2xl font-black text-white mb-2">
+                Turn your trading knowledge into a business
+              </h2>
+              <p className="text-slate-400 text-sm max-w-xl">
+                Sell trading courses, crypto merch, or digital products. Shopify powers over 1 million businesses — start your free trial today, no credit card required.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <a
+                href={AFFILIATES.shopify}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center px-8 py-4 bg-[#96bf48] text-white font-bold rounded-xl hover:bg-[#7ea33a] transition-all shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                Start Free Trial →
+              </a>
+              <p className="text-xs text-slate-600 mt-2 text-center">3 days free · Then from $1/mo</p>
+            </div>
+          </div>
+        </section>
+
         {/* AdSense */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <AdSenseSlot format="horizontal" />

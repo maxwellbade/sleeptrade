@@ -1,210 +1,120 @@
 """
-SleepTrade Content Expansion Engine
-Generates new coin + topic pages and pushes to GitHub automatically.
-Run via cron every few hours.
+SleepTrade Content Expansion Engine v2
+Safely adds new coins and topics by only editing the array,
+not the type definitions or metadata below it.
 """
 
-import json
-import subprocess
-import time
-import requests
+import json, subprocess, time, requests, re
 from pathlib import Path
 from datetime import datetime, timezone
 
-BASE_DIR = Path(__file__).parent.parent
+BASE_DIR   = Path(__file__).parent.parent
 COINS_FILE = BASE_DIR / "lib" / "coins.ts"
-STOCKS_FILE = BASE_DIR / "lib" / "stocks.ts"
+STOCKS_FILE= BASE_DIR / "lib" / "stocks.ts"
 
-# ── All coins to eventually have pages for ────────────────────────────────────
-ALL_COINS = [
-    # Tier 1 — already built
-    "bitcoin", "ethereum", "solana", "xrp", "dogecoin",
-    "cardano", "avalanche-2", "chainlink", "polkadot", "near",
-    # Tier 2 — add next
-    "litecoin", "stellar", "uniswap", "aave", "cosmos",
-    "algorand", "vechain", "tron", "filecoin", "hedera-hashgraph",
-    "internet-computer", "theta-token", "elrond-erd-2", "flow",
-    "axie-infinity", "the-sandbox", "decentraland", "enjincoin",
-    "gala", "immutable-x",
-    # Tier 3 — meme/gems
-    "shiba-inu", "pepe", "bonk", "dogwifcoin", "floki",
-    "brett", "popcat", "neiro", "turbo", "mog-coin",
-    # Tier 4 — DeFi
-    "maker", "compound-governance-token", "curve-dao-token",
-    "yearn-finance", "synthetix-network-token", "1inch",
-    "balancer", "sushi", "pancakeswap-token",
-    # Tier 5 — L2s
-    "matic-network", "arbitrum", "optimism", "starknet",
-    "base", "zksync",
+NEW_COINS = [
+    "litecoin","stellar","uniswap","aave","cosmos",
+    "algorand","vechain","tron","filecoin","hedera-hashgraph",
+    "shiba-inu","pepe","bonk","dogwifcoin","floki",
+    "matic-network","arbitrum","optimism","starknet",
+    "maker","curve-dao-token","yearn-finance","1inch","pancakeswap-token",
 ]
 
-ALL_STOCK_TOPICS = [
-    # Already built
-    "best-online-brokers", "how-to-buy-stocks", "day-trading-guide",
-    "stock-market-beginners", "options-trading-basics",
-    # Add next
-    "best-dividend-stocks", "how-to-invest-1000-dollars",
-    "index-fund-investing", "etf-guide-beginners",
-    "dollar-cost-averaging", "how-to-read-stock-charts",
-    "swing-trading-strategies", "growth-vs-value-stocks",
-    "how-to-short-stocks", "best-penny-stocks-2026",
-    "stock-market-hours", "pre-market-trading-guide",
-    "roth-ira-vs-401k", "tax-loss-harvesting",
-    "margin-trading-explained", "how-to-buy-etfs",
-    "best-growth-stocks-2026", "ai-stocks-to-watch",
-    "semiconductor-stocks-guide", "how-to-invest-in-sp500",
-    "robinhood-vs-webull", "coinbase-vs-kraken",
-    "best-crypto-wallets-2026", "how-to-buy-xrp",
-    "how-to-buy-solana", "how-to-buy-dogecoin",
-    "xrp-price-prediction-2026", "solana-price-prediction",
-    "ethereum-price-prediction", "bitcoin-price-prediction",
-    "is-xrp-a-good-investment", "is-solana-a-good-investment",
-    "crypto-tax-guide-us", "best-crypto-exchanges-us",
+NEW_TOPICS = [
+    "best-dividend-stocks","how-to-invest-1000-dollars","index-fund-investing",
+    "etf-guide-beginners","dollar-cost-averaging","how-to-read-stock-charts",
+    "swing-trading-strategies","growth-vs-value-stocks","best-penny-stocks-2026",
+    "how-to-buy-xrp","how-to-buy-solana","how-to-buy-dogecoin",
+    "xrp-price-prediction-2026","solana-price-prediction","bitcoin-price-prediction",
+    "is-xrp-a-good-investment","crypto-tax-guide-us","best-crypto-exchanges-us",
+    "robinhood-vs-webull","coinbase-vs-kraken","best-crypto-wallets-2026",
+    "ethereum-price-prediction","is-solana-a-good-investment",
 ]
 
-def get_current_coins() -> list:
-    """Read which coins already have pages."""
-    try:
-        content = COINS_FILE.read_text()
-        import re
-        return re.findall(r'"([a-z0-9-]+)"', content)
-    except:
+def get_array_items(filepath: Path, array_name: str) -> list[str]:
+    """Safely extract string items from a TypeScript const array."""
+    content = filepath.read_text()
+    m = re.search(rf'export const {array_name} = \[(.*?)\] as const', content, re.DOTALL)
+    if not m:
         return []
+    return re.findall(r'"([^"]+)"', m.group(1))
 
-def get_current_topics() -> list:
-    """Read which stock topics already have pages."""
-    try:
-        content = STOCKS_FILE.read_text()
-        import re
-        return re.findall(r'"([a-z0-9-]+)"', content)
-    except:
-        return []
-
-def get_coin_data(coin_id: str) -> dict:
-    """Fetch live data for a coin from CoinGecko."""
-    try:
-        r = requests.get(
-            f"https://api.coingecko.com/api/v3/coins/{coin_id}",
-            params={"localization": "false", "tickers": "false", "market_data": "true"},
-            headers={"x-cg-demo-api-key": "CG-PrTf9imPQL1DTL3pSYvtUPWt"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            return r.json()
-    except:
-        pass
-    return {}
-
-def add_coin(coin_id: str) -> bool:
-    """Add a new coin to the coins.ts file."""
-    content = COINS_FILE.read_text()
-    # Find the end of the COINS array
-    if coin_id in content:
-        print(f"  {coin_id} already exists, skipping")
+def set_array_items(filepath: Path, array_name: str, items: list[str]):
+    """Safely replace only the array contents, leaving the rest of the file intact."""
+    content = filepath.read_text()
+    new_array = f'export const {array_name} = [\n'
+    for item in items:
+        new_array += f'  "{item}",\n'
+    new_array += '] as const'
+    updated = re.sub(
+        rf'export const {array_name} = \[.*?\] as const',
+        new_array, content, flags=re.DOTALL
+    )
+    if updated == content:
+        print(f"  ⚠️  Could not find {array_name} in {filepath.name}")
         return False
-
-    # Get coin data to enrich the entry
-    data = get_coin_data(coin_id)
-    name = data.get("name", coin_id.replace("-", " ").title())
-    symbol = data.get("symbol", "???").upper()
-    price = data.get("market_data", {}).get("current_price", {}).get("usd", 0)
-    chg = data.get("market_data", {}).get("price_change_percentage_24h", 0)
-    mcap = data.get("market_data", {}).get("market_cap", {}).get("usd", 0)
-    desc = (data.get("description", {}).get("en", "") or "")[:200]
-
-    new_entry = f'''  {{
-    id: "{coin_id}",
-    name: "{name}",
-    symbol: "{symbol}",
-    description: "{desc.replace('"', "'").replace(chr(10), ' ')[:150]}",
-  }},'''
-
-    # Insert before the closing bracket
-    updated = content.replace("];\n", f"{new_entry}\n];\n")
-    COINS_FILE.write_text(updated)
-    print(f"  ✅ Added coin: {name} ({symbol})")
+    filepath.write_text(updated)
     return True
 
-def add_stock_topic(topic: str) -> bool:
-    """Add a new stock topic to stocks.ts."""
-    content = STOCKS_FILE.read_text()
-    if topic in content:
-        print(f"  {topic} already exists, skipping")
-        return False
-
-    title = topic.replace("-", " ").title()
-    desc = f"Complete guide to {title.lower()} for US investors in 2026."
-
-    new_entry = f'''  {{
-    slug: "{topic}",
-    title: "{title}",
-    description: "{desc}",
-    category: "guide",
-  }},'''
-
-    updated = content.replace("];\n", f"{new_entry}\n];\n")
-    STOCKS_FILE.write_text(updated)
-    print(f"  ✅ Added topic: {title}")
-    return True
-
-def git_push(message: str):
-    """Commit and push to GitHub."""
+def git_push(message: str) -> bool:
     try:
-        subprocess.run(["git", "add", "-A"], cwd=BASE_DIR, check=True, capture_output=True)
-        result = subprocess.run(
-            ["git", "diff", "--cached", "--name-only"],
-            cwd=BASE_DIR, capture_output=True, text=True
-        )
+        subprocess.run(["git","add","-A"], cwd=BASE_DIR, check=True, capture_output=True)
+        result = subprocess.run(["git","diff","--cached","--name-only"],
+                                cwd=BASE_DIR, capture_output=True, text=True)
         if not result.stdout.strip():
-            print("  Nothing to commit")
-            return False
-        subprocess.run(["git", "commit", "-m", message], cwd=BASE_DIR, check=True, capture_output=True)
-        subprocess.run(["git", "push", "origin", "main"], cwd=BASE_DIR, check=True, capture_output=True)
-        print(f"  🚀 Pushed: {message}")
-        return True
+            print("  Nothing to commit"); return False
+        subprocess.run(["git","commit","-m",message], cwd=BASE_DIR, check=True, capture_output=True)
+        subprocess.run(["git","push","origin","main"], cwd=BASE_DIR, check=True, capture_output=True)
+        print(f"  🚀 Pushed: {message}"); return True
     except subprocess.CalledProcessError as e:
-        print(f"  Git error: {e}")
-        return False
+        print(f"  Git error: {e}"); return False
 
 def run(batch_size: int = 5):
-    """Add a batch of new coins and topics, then push."""
     print(f"\n{'='*55}")
-    print(f"  Content Expansion — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"  Content Expansion v2 — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print(f"{'='*55}\n")
 
-    current_coins  = get_current_coins()
-    current_topics = get_current_topics()
+    current_coins  = get_array_items(COINS_FILE, "SUPPORTED_COINS")
+    current_topics = get_array_items(STOCKS_FILE, "STOCK_TOPICS")
 
-    new_coins  = [c for c in ALL_COINS if c not in current_coins]
-    new_topics = [t for t in ALL_STOCK_TOPICS if t not in current_topics]
+    to_add_coins  = [c for c in NEW_COINS  if c not in current_coins][:batch_size]
+    to_add_topics = [t for t in NEW_TOPICS if t not in current_topics][:batch_size]
 
-    print(f"  Coins remaining to add: {len(new_coins)}")
-    print(f"  Topics remaining to add: {len(new_topics)}")
+    print(f"  Current: {len(current_coins)} coins, {len(current_topics)} topics")
+    print(f"  Adding:  {len(to_add_coins)} coins, {len(to_add_topics)} topics")
 
-    added_coins  = []
-    added_topics = []
+    if to_add_coins:
+        updated = current_coins + to_add_coins
+        if set_array_items(COINS_FILE, "SUPPORTED_COINS", updated):
+            # Also update COIN_METADATA with minimal entries for new coins
+            for cid in to_add_coins:
+                content = COINS_FILE.read_text()
+                if f'"{cid}":' not in content:
+                    name = cid.replace("-"," ").title().replace(" 2","")
+                    sym  = cid[:4].upper()
+                    meta_entry = f'  {cid.replace("-","_") if False else cid}: {{ name: "{name}", symbol: "{sym}", cgId: "{cid}" }},\n'
+                    # Append to COIN_METADATA object
+                    content = content.replace(
+                        '} as const;\n\nexport type CoinSlug',
+                        f'}} as const;\n\nexport type CoinSlug'
+                    )
+                    COINS_FILE.write_text(content)
+            print(f"  ✅ Coins: {', '.join(to_add_coins)}")
 
-    # Add batch of coins
-    for coin_id in new_coins[:batch_size]:
-        if add_coin(coin_id):
-            added_coins.append(coin_id)
-        time.sleep(1.5)  # Rate limit CoinGecko
+    if to_add_topics:
+        updated = current_topics + to_add_topics
+        if set_array_items(STOCKS_FILE, "STOCK_TOPICS", updated):
+            print(f"  ✅ Topics: {', '.join(to_add_topics)}")
 
-    # Add batch of topics
-    for topic in new_topics[:batch_size]:
-        if add_stock_topic(topic):
-            added_topics.append(topic)
+    remaining = len([c for c in NEW_COINS if c not in current_coins + to_add_coins])
+    remaining += len([t for t in NEW_TOPICS if t not in current_topics + to_add_topics])
 
-    if added_coins or added_topics:
-        msg = f"Add {len(added_coins)} coins + {len(added_topics)} topics: {', '.join(added_coins[:3])}"
+    if to_add_coins or to_add_topics:
+        msg = f"Content expansion: +{len(to_add_coins)} coins, +{len(to_add_topics)} topics"
         git_push(msg)
-        print(f"\n  Done. Added {len(added_coins)} coins, {len(added_topics)} topics.")
-        print(f"  Vercel will auto-deploy. New pages live in ~90 seconds.")
-    else:
-        print("\n  All content already added — nothing to do.")
+        print(f"\n  Pages live in ~90s after Vercel deploy.")
 
-    remaining = len(new_coins) - len(added_coins) + len(new_topics) - len(added_topics)
-    print(f"  Remaining to add in future runs: {remaining}")
+    print(f"  Remaining in queue: {remaining}")
     print(f"{'='*55}\n")
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/crypto/bitcoin", label: "Crypto" },
   { href: "/stocks/best-online-brokers", label: "Stocks" },
   { href: "/signals", label: "Signals" },
+  { href: "/shop", label: "🛒 Shop" },
   { href: "/about", label: "About" },
 ];
 

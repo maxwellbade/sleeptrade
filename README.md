@@ -1,2 +1,0 @@
-# sleeptrade
-sleep trade win

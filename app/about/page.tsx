@@ -182,7 +182,7 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <AffiliateCTA broker="coinbase" label="Start on Coinbase →" variant="primary" />
-            <AffiliateCTA broker="webull" label="Start on Webull →" variant="secondary" />
+            <AffiliateCTA broker="robinhood" label="Start on Robinhood →" variant="secondary" />
           </div>
         </div>
       </div>

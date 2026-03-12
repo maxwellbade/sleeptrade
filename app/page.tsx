@@ -40,12 +40,12 @@ const FEATURED_BROKERS = [
     highlight: "Most trusted US crypto exchange",
   },
   {
-    name: "Webull",
+    name: "Robinhood",
     type: "Stocks & Crypto",
     rating: 4.6,
     fee: "$0",
     minDeposit: "$0",
-    affiliateKey: "webull" as const,
+    affiliateKey: "robinhood" as const,
     highlight: "Best free trading platform",
   },
   {
@@ -150,7 +150,7 @@ export default function HomePage() {
                 🚀 Start Trading Crypto
               </a>
               <a
-                href={AFFILIATES.webull}
+                href={AFFILIATES.robinhood}
                 className="px-8 py-4 bg-green/20 text-green border border-green/30 font-bold text-base rounded-xl hover:bg-green/30 transition-all hover:-translate-y-0.5"
               >
                 📈 Start Trading Stocks

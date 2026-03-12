@@ -7,12 +7,12 @@ import { AffiliateKey } from "@/lib/affiliates";
 export const metadata: Metadata = {
   title: "Best Crypto Exchanges & Stock Brokers — Compare 2025",
   description:
-    "Compare Coinbase vs Kraken vs Webull vs moomoo vs Interactive Brokers. Side-by-side fees, features, and ratings to find the best broker for you.",
+    "Compare Coinbase vs Kraken vs Robinhood vs moomoo vs Interactive Brokers. Side-by-side fees, features, and ratings to find the best broker for you.",
   keywords: [
     "best crypto exchange comparison",
     "coinbase vs kraken",
     "best stock broker 2025",
-    "webull vs moomoo",
+    "robinhood vs moomoo",
     "cheapest crypto exchange USA",
   ],
 };
@@ -75,26 +75,26 @@ const BROKERS: Broker[] = [
     ],
   },
   {
-    name: "Webull",
+    name: "Robinhood",
     type: "Stocks & Crypto",
-    affiliateKey: "webull",
+    affiliateKey: "robinhood",
     fees: "$0 commissions",
     assets: "Stocks, ETFs, Options, Crypto",
     minDeposit: "$0",
     rating: 4.6,
     pros: [
-      "Commission-free stock + ETF + options",
-      "Extended hours trading (4AM–8PM)",
-      "Advanced charting tools (free)",
-      "Paper trading for practice",
-      "Fractional shares available",
+      "Commission-free stocks, ETFs, options & crypto",
+      "24-hour market trading",
+      "Fractional shares from $1",
+      "Clean beginner-friendly interface",
+      "Instant deposit up to $1,000",
     ],
     cons: [
-      "Limited crypto selection",
+      "Limited research tools vs competitors",
       "No mutual funds or bonds",
       "PFOF business model",
     ],
-    badge: "Best Free Platform",
+    badge: "Best for Beginners",
   },
   {
     name: "moomoo",

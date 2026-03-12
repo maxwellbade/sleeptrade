@@ -144,7 +144,7 @@ export default function StockTopicPage({ params }: PageProps) {
                 investing in minutes. No minimum deposit required.
               </p>
               <div className="flex flex-wrap gap-3">
-                <AffiliateCTA broker="webull" label="Open Webull (Free) →" variant="primary" />
+                <AffiliateCTA broker="robinhood" label="Open Robinhood (Free) →" variant="primary" />
                 <AffiliateCTA broker="moomoo" label="Open moomoo →" variant="outline" />
               </div>
             </div>
@@ -161,9 +161,9 @@ export default function StockTopicPage({ params }: PageProps) {
 
               <div className="space-y-3">
                 <div className="border border-border rounded-xl p-4">
-                  <div className="text-white font-semibold text-sm mb-1">Webull</div>
+                  <div className="text-white font-semibold text-sm mb-1">Robinhood</div>
                   <div className="text-slate-500 text-xs mb-3">$0 commissions · Advanced charts · Free</div>
-                  <AffiliateCTA broker="webull" label="Open Free Account →" variant="primary" className="w-full justify-center" />
+                  <AffiliateCTA broker="robinhood" label="Open Free Account →" variant="primary" className="w-full justify-center" />
                 </div>
 
                 <div className="border border-border rounded-xl p-4">

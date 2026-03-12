@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description: "Live crypto prices, AI analysis, broker comparisons, and trading signals.",
     images: ["/og-image.png"],
   },
+  verification: {
+    google: "_0VNNf7WNsI6oZc-HPO2DOO2fqs9aRGsq1xewVRcK_E",
+  },
   robots: {
     index: true,
     follow: true,

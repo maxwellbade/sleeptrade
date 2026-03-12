@@ -1,4 +1,10 @@
+# *
 User-agent: *
 Allow: /
 
+# Host
+Host: https://sleeptrade.win
+
+# Sitemaps
 Sitemap: https://sleeptrade.win/sitemap.xml
+Sitemap: https://sleeptrade.win/server-sitemap.xml

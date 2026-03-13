@@ -29,6 +29,10 @@ export const SUPPORTED_COINS = [
   "optimism",
   "starknet",
   "maker",
+  "curve-dao-token",
+  "yearn-finance",
+  "1inch",
+  "pancakeswap-token",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

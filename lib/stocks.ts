@@ -24,6 +24,9 @@ export const STOCK_TOPICS = [
   "best-crypto-exchanges-us",
   "robinhood-vs-webull",
   "coinbase-vs-kraken",
+  "best-crypto-wallets-2026",
+  "ethereum-price-prediction",
+  "is-solana-a-good-investment",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

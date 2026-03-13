@@ -9,6 +9,11 @@ export const SUPPORTED_COINS = [
   "chainlink",
   "polkadot",
   "near",
+  "litecoin",
+  "stellar",
+  "uniswap",
+  "aave",
+  "cosmos",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

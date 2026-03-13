@@ -4,6 +4,11 @@ export const STOCK_TOPICS = [
   "day-trading-guide",
   "stock-market-beginners",
   "options-trading-basics",
+  "best-dividend-stocks",
+  "how-to-invest-1000-dollars",
+  "index-fund-investing",
+  "etf-guide-beginners",
+  "dollar-cost-averaging",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

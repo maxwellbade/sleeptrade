@@ -24,6 +24,11 @@ export const SUPPORTED_COINS = [
   "bonk",
   "dogwifcoin",
   "floki",
+  "matic-network",
+  "arbitrum",
+  "optimism",
+  "starknet",
+  "maker",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

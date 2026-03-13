@@ -9,6 +9,11 @@ export const STOCK_TOPICS = [
   "index-fund-investing",
   "etf-guide-beginners",
   "dollar-cost-averaging",
+  "how-to-read-stock-charts",
+  "swing-trading-strategies",
+  "growth-vs-value-stocks",
+  "best-penny-stocks-2026",
+  "how-to-buy-xrp",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

@@ -14,6 +14,11 @@ export const SUPPORTED_COINS = [
   "uniswap",
   "aave",
   "cosmos",
+  "algorand",
+  "vechain",
+  "tron",
+  "filecoin",
+  "hedera-hashgraph",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

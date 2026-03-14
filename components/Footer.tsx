@@ -73,6 +73,16 @@ export default function Footer() {
                   Advertise
                 </Link>
               </li>
+              <li>
+                <Link href="/terms" className="text-slate-500 hover:text-accent text-sm transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-slate-500 hover:text-accent text-sm transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

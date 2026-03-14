@@ -52,6 +52,11 @@ export const STOCK_TOPICS = [
   "bitcoin-etf-guide",
   "spot-vs-futures-bitcoin",
   "crypto-portfolio-strategy",
+  "best-stocks-to-buy-2026",
+  "how-to-invest-in-sp500",
+  "roth-ira-vs-401k",
+  "how-to-start-investing-at-18",
+  "compound-interest-explained",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

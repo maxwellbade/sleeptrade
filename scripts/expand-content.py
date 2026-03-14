@@ -25,6 +25,16 @@ NEW_COINS = [
     "thorchain","osmosis","akash-network","kava","band-protocol",
     "blur","dydx","gmx","synthetix","compound-governance-token",
     "frax-share","convex-finance","balancer","loopring","zcash",
+    # Batch 3
+    "monero","dash","neo","iota","waves",
+    "qtum","icon","ontology","zilliqa","decred",
+    "ravencoin","horizen","komodo","stratis","syscoin",
+    "wax","ankr","celer-network","ocean-protocol","numeraire",
+    "ampleforth","reserve-rights-token","uma","barnbridge","badger-dao",
+    "alchemix","origin-protocol","liquity","paladin","angle-protocol",
+    "astar","metis-token","moonbeam","moonriver","karura",
+    "clover-finance","bifrost","phala-network","khala-network","ternoa",
+    "ergo","flux","hive","steem","blurt",
 ]
 
 NEW_TOPICS = [
@@ -46,6 +56,25 @@ NEW_TOPICS = [
     "ai-crypto-coins","gaming-crypto-tokens","real-world-asset-crypto",
     "how-to-short-crypto","futures-trading-crypto","leverage-trading-guide",
     "bitcoin-etf-guide","spot-vs-futures-bitcoin","crypto-portfolio-strategy",
+    # Batch 3
+    "best-stocks-to-buy-2026","how-to-invest-in-sp500","roth-ira-vs-401k",
+    "how-to-start-investing-at-18","compound-interest-explained","stock-market-for-beginners",
+    "how-to-read-balance-sheet","price-earnings-ratio-explained","what-is-market-cap",
+    "best-broker-for-beginners","how-to-buy-index-funds","vanguard-vs-fidelity",
+    "how-to-invest-in-real-estate","reits-explained","passive-income-ideas-2026",
+    "how-to-make-money-online","side-hustles-2026","financial-independence-guide",
+    "how-to-save-money-fast","emergency-fund-guide","debt-payoff-strategies",
+    "budgeting-for-beginners","how-to-increase-credit-score","best-high-yield-savings",
+    "cd-vs-high-yield-savings","money-market-account-explained","treasury-bonds-guide",
+    "inflation-hedge-investments","gold-vs-bitcoin","commodities-investing-guide",
+    "options-trading-for-beginners","covered-calls-strategy","puts-vs-calls-explained",
+    "technical-analysis-guide","candlestick-patterns-explained","moving-averages-guide",
+    "rsi-indicator-explained","macd-trading-strategy","bollinger-bands-guide",
+    "fibonacci-retracement-crypto","volume-analysis-trading","support-resistance-levels",
+    "day-trading-guide","scalping-strategy","position-trading-explained",
+    "crypto-arbitrage-guide","grid-trading-bots","copy-trading-platforms",
+    "best-crypto-tax-software","how-to-report-crypto-taxes","capital-gains-tax-crypto",
+    "crypto-lending-platforms","yield-farming-guide","liquidity-mining-explained",
 ]
 
 def get_array_items(filepath: Path, array_name: str) -> list[str]:

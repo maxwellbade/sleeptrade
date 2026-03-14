@@ -58,6 +58,11 @@ export const SUPPORTED_COINS = [
   "balancer",
   "loopring",
   "zcash",
+  "monero",
+  "dash",
+  "neo",
+  "iota",
+  "waves",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

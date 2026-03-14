@@ -13,14 +13,22 @@ COINS_FILE = BASE_DIR / "lib" / "coins.ts"
 STOCKS_FILE= BASE_DIR / "lib" / "stocks.ts"
 
 NEW_COINS = [
+    # Batch 1 (done)
     "litecoin","stellar","uniswap","aave","cosmos",
     "algorand","vechain","tron","filecoin","hedera-hashgraph",
     "shiba-inu","pepe","bonk","dogwifcoin","floki",
     "matic-network","arbitrum","optimism","starknet",
     "maker","curve-dao-token","yearn-finance","1inch","pancakeswap-token",
+    # Batch 2
+    "injective-protocol","sei-network","sui","aptos","celestia",
+    "fetch-ai","render-token","the-graph","lido-dao","rocket-pool",
+    "thorchain","osmosis","akash-network","kava","band-protocol",
+    "blur","dydx","gmx","synthetix","compound-governance-token",
+    "frax-share","convex-finance","balancer","loopring","zcash",
 ]
 
 NEW_TOPICS = [
+    # Batch 1 (done)
     "best-dividend-stocks","how-to-invest-1000-dollars","index-fund-investing",
     "etf-guide-beginners","dollar-cost-averaging","how-to-read-stock-charts",
     "swing-trading-strategies","growth-vs-value-stocks","best-penny-stocks-2026",
@@ -29,6 +37,15 @@ NEW_TOPICS = [
     "is-xrp-a-good-investment","crypto-tax-guide-us","best-crypto-exchanges-us",
     "robinhood-vs-webull","coinbase-vs-kraken","best-crypto-wallets-2026",
     "ethereum-price-prediction","is-solana-a-good-investment",
+    # Batch 2
+    "cardano-price-prediction","dogecoin-price-prediction","shiba-inu-price-prediction",
+    "best-crypto-to-buy-2026","passive-income-crypto","staking-crypto-guide",
+    "defi-explained","nft-investing-guide","web3-for-beginners","layer2-crypto-explained",
+    "how-to-use-metamask","hardware-wallet-guide","cold-storage-crypto",
+    "crypto-vs-stocks","best-altcoins-2026","undervalued-crypto-2026",
+    "ai-crypto-coins","gaming-crypto-tokens","real-world-asset-crypto",
+    "how-to-short-crypto","futures-trading-crypto","leverage-trading-guide",
+    "bitcoin-etf-guide","spot-vs-futures-bitcoin","crypto-portfolio-strategy",
 ]
 
 def get_array_items(filepath: Path, array_name: str) -> list[str]:

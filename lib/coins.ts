@@ -38,6 +38,11 @@ export const SUPPORTED_COINS = [
   "sui",
   "aptos",
   "celestia",
+  "fetch-ai",
+  "render-token",
+  "the-graph",
+  "lido-dao",
+  "rocket-pool",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

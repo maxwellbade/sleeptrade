@@ -32,6 +32,11 @@ export const STOCK_TOPICS = [
   "shiba-inu-price-prediction",
   "best-crypto-to-buy-2026",
   "passive-income-crypto",
+  "staking-crypto-guide",
+  "defi-explained",
+  "nft-investing-guide",
+  "web3-for-beginners",
+  "layer2-crypto-explained",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

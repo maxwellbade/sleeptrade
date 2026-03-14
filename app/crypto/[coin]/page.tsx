@@ -68,13 +68,15 @@ async function getCoinData(cgId: string): Promise<CoinData | null> {
   }
 }
 
-function formatPrice(price: number): string {
+function formatPrice(price: number | null | undefined): string {
+  if (price == null || isNaN(price)) return "N/A";
   if (price >= 1000) return `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
   if (price >= 1) return `$${price.toFixed(2)}`;
   return `$${price.toFixed(4)}`;
 }
 
-function formatLargeNumber(n: number): string {
+function formatLargeNumber(n: number | null | undefined): string {
+  if (n == null || isNaN(n)) return "N/A";
   if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
   if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;

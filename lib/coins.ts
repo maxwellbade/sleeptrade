@@ -48,6 +48,11 @@ export const SUPPORTED_COINS = [
   "akash-network",
   "kava",
   "band-protocol",
+  "blur",
+  "dydx",
+  "gmx",
+  "synthetix",
+  "compound-governance-token",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

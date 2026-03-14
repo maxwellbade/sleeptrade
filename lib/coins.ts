@@ -53,6 +53,11 @@ export const SUPPORTED_COINS = [
   "gmx",
   "synthetix",
   "compound-governance-token",
+  "frax-share",
+  "convex-finance",
+  "balancer",
+  "loopring",
+  "zcash",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

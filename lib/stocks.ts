@@ -47,6 +47,11 @@ export const STOCK_TOPICS = [
   "gaming-crypto-tokens",
   "real-world-asset-crypto",
   "how-to-short-crypto",
+  "futures-trading-crypto",
+  "leverage-trading-guide",
+  "bitcoin-etf-guide",
+  "spot-vs-futures-bitcoin",
+  "crypto-portfolio-strategy",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

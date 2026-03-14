@@ -37,6 +37,11 @@ export const STOCK_TOPICS = [
   "nft-investing-guide",
   "web3-for-beginners",
   "layer2-crypto-explained",
+  "how-to-use-metamask",
+  "hardware-wallet-guide",
+  "cold-storage-crypto",
+  "crypto-vs-stocks",
+  "best-altcoins-2026",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

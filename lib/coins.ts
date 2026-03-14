@@ -43,6 +43,11 @@ export const SUPPORTED_COINS = [
   "the-graph",
   "lido-dao",
   "rocket-pool",
+  "thorchain",
+  "osmosis",
+  "akash-network",
+  "kava",
+  "band-protocol",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

@@ -78,6 +78,11 @@ export const SUPPORTED_COINS = [
   "celer-network",
   "ocean-protocol",
   "numeraire",
+  "ampleforth",
+  "reserve-rights-token",
+  "uma",
+  "barnbridge",
+  "badger-dao",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

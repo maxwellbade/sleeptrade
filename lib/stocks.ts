@@ -67,6 +67,11 @@ export const STOCK_TOPICS = [
   "how-to-invest-in-real-estate",
   "reits-explained",
   "passive-income-ideas-2026",
+  "how-to-make-money-online",
+  "side-hustles-2026",
+  "financial-independence-guide",
+  "how-to-save-money-fast",
+  "emergency-fund-guide",
 ] as const;
 
 export type StockTopic = typeof STOCK_TOPICS[number];

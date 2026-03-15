@@ -73,6 +73,11 @@ export const SUPPORTED_COINS = [
   "komodo",
   "stratis",
   "syscoin",
+  "wax",
+  "ankr",
+  "celer-network",
+  "ocean-protocol",
+  "numeraire",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];

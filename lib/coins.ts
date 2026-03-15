@@ -68,6 +68,11 @@ export const SUPPORTED_COINS = [
   "ontology",
   "zilliqa",
   "decred",
+  "ravencoin",
+  "horizen",
+  "komodo",
+  "stratis",
+  "syscoin",
 ] as const;
 
 export type CoinSlug = typeof SUPPORTED_COINS[number];
